@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private float speed = 10f;
-    private float rotationSpeed = 10f;
+    private float speed = 20f;
+    private float rotationSpeed = 50f;
     private Animator animator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,15 +19,28 @@ public class Player : MonoBehaviour
         // animator.SetBool("ClearUpper",true);
         if (verticalInput == 1f)
         {
-            animator.SetBool("IdleToRun", true);
-            animator.SetBool("RunToIdle",false);
+            animator.SetBool("IdleToRunForward", true);
+            animator.SetBool("IdleToRunBackward",false);
+            animator.SetBool("RunForwardToIdle",false);
+            animator.SetBool("RunBackwardToIdle",false);
+            transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
+        }
+        else if(verticalInput == -1f)
+        {
+            animator.SetBool("IdleToRunForward", false);
+            animator.SetBool("IdleToRunBackward",true);
+            animator.SetBool("RunForwardToIdle",false);
+            animator.SetBool("RunBackwardToIdle",false);
             transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
         }
         else
         {
-            animator.SetBool("IdleToRun", false);
-            animator.SetBool("RunToIdle", true);
+            animator.SetBool("IdleToRunBackward",false);
+            animator.SetBool("IdleToRunForward", false);
+            animator.SetBool("RunForwardToIdle", true);
+            animator.SetBool("RunBackwardToIdle",true);
         }
+
 
         // animator.SetBool("IdleToRun",false);
 
