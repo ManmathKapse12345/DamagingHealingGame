@@ -46,4 +46,9 @@ public class Player : MonoBehaviour
 
         transform.Rotate(Vector3.up * Time.deltaTime * rotationSpeed * horizontalInput);
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Destroy(other.gameObject);
+    }
 }
