@@ -1,9 +1,12 @@
 using UnityEngine;
-
+using TMPro;
 public class SceneManager : MonoBehaviour
 {
     private const int numberOfObjects = 6;
     public GameObject[] vfxObjects = new GameObject[numberOfObjects];
+    public TMP_Text scoreDisplay;
+    private Player playerScript;
+    private bool isGameOver = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,11 +33,22 @@ public class SceneManager : MonoBehaviour
             Instantiate(vfxObjects[j], spawnPosition, vfxObjects[j].transform.rotation);
             prev_j = j;
         }
+        playerScript = GameObject.FindWithTag("Player").GetComponent<Player>();
+        scoreDisplay.text = "Health :- "+playerScript.GetHealth();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        isGameOver = playerScript.GetHealth() == 0;
+        if (!isGameOver)
+        {
+            scoreDisplay.text = "Health :- "+playerScript.GetHealth();
+        }
+        else
+        {
+            scoreDisplay.text = "Game Over !";
+        }
+        
     }
 }

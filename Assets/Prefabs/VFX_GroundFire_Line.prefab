@@ -4850,7 +4850,7 @@ GameObject:
   - component: {fileID: 66590622348476357}
   m_Layer: 0
   m_Name: VFX_GroundFire_Line
-  m_TagString: Untagged
+  m_TagString: Damage4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
